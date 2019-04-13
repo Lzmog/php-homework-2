@@ -6,20 +6,42 @@ namespace Acme\Entity;
 
 class SingleRoomEntity extends RoomEntity
 {
-    /** @var int */
-    private $roomNumber;
+    private const BED_COUNT = 1;
+    private const ROOM_TYPE = 'Standart';
+    private const RESTROOM = true;
+    private const EXTRAS = 'TV, air-conditioner';
+
+    /** @var RoomEntity */
+    private $roomInformation;
 
     public function __construct(int $roomNumber, int $price)
     {
-        $this->roomNumber = $roomNumber;
-        $this->setPrice($price);
+        $this->setRoomInformation($roomNumber, $price);
     }
 
     /**
-     * @return int
+     * @return RoomEntity
      */
-    public function getRoomNumber(): int
+    public function getRoomInformation(): RoomEntity
     {
-        return $this->roomNumber;
+        return $this->roomInformation;
+    }
+
+    /**
+     * @param int $roomNumber
+     * @param int $price
+     *
+     * @return void
+     */
+    public function setRoomInformation(int $roomNumber, int $price): void
+    {
+        $room = new RoomEntity();
+
+        $room->setRoomNumber($roomNumber);
+        $room->setBedCount(self::BED_COUNT);
+        $room->setRoomType(self::ROOM_TYPE);
+        $room->setRestroom(self::RESTROOM);
+        $room->setExtras(self::EXTRAS);
+        $room->setPrice($price);
     }
 }

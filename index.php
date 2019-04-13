@@ -2,9 +2,11 @@
 
 declare(strict_types=1);
 
+use Acme\Entity\SingleRoomEntity;
+
 require __DIR__ . '/vendor/autoload.php';
 
-$room = new \Acme\Entity\SingleRoomEntity(1408, 99);
+$room = new SingleRoomEntity(1408, 99);
 var_dump($room);
 /*
 $guest = new Guest('Vardenis', 'Pavardenis');

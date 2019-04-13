@@ -4,18 +4,23 @@ declare(strict_types=1);
 
 namespace Acme\Entity;
 
-class RoomEntity implements \ReservableInterface
+use Acme\Model\ReservableInterface;
+
+class RoomEntity implements ReservableInterface
 {
+    /** @var int */
+    private $roomNumber;
+
     /** @var int */
     private $bedCount;
 
     /** @var string */
     private $roomType;
 
-    /** @var bool */
+    /** @var boolean */
     private $restroom = false;
 
-    /** @var bool */
+    /** @var boolean */
     private $balcony = false;
 
     /** @var string */
@@ -26,6 +31,22 @@ class RoomEntity implements \ReservableInterface
 
     /** @var array */
     private $reservations;
+
+    /**
+     * @return int
+     */
+    public function getRoomNumber(): int
+    {
+        return $this->roomNumber;
+    }
+
+    /**
+     * @param int $roomNumber
+     */
+    public function setRoomNumber(int $roomNumber): void
+    {
+        $this->roomNumber = $roomNumber;
+    }
 
     /**
      * @return int
