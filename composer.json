@@ -1,0 +1,21 @@
+{
+    "name": "duck/php-homework-2",
+    "description": "second homework (php)",
+    "type": "php",
+    "require": {
+        "php": "^7.2",
+        "monolog/monolog": "^1.24"
+    },
+    "authors": [
+        {
+            "name": "Lukas",
+            "email": "lukas.zmoginas@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Acme\\": "src/",
+            "Vendor\\Namespace\\": ""
+        }
+    }
+}
