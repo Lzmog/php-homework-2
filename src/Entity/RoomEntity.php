@@ -153,10 +153,20 @@ class RoomEntity implements ReservableInterface
     }
 
     /**
-     * @param array $reservations
+     * @param ReservationEntity $reservationEntity
      */
-    public function setReservations(array $reservations): void
+    public function addReservation(ReservationEntity $reservationEntity): void
     {
-        $this->reservations = $reservations;
+        $this->reservations = $reservationEntity;
     }
+
+    /**
+     * @param ReservationEntity $reservationEntity
+     */
+    public function removeReservation(ReservationEntity $reservationEntity): void
+    {
+        var_dump($reservationEntity);die;
+    }
+
+
 }
