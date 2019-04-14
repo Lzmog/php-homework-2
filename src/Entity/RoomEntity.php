@@ -167,6 +167,4 @@ class RoomEntity implements ReservableInterface
     {
         var_dump($reservationEntity);die;
     }
-
-
 }
