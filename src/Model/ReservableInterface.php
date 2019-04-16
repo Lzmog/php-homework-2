@@ -8,6 +8,17 @@ use Acme\Entity\ReservationEntity;
 
 interface ReservableInterface
 {
-    public function addReservation(ReservationEntity $reservationEntity):void;
+    /**
+     * @param ReservationEntity $reservationEntity
+     *
+     * @return void
+     */
+    public function addReservation(ReservationEntity $reservationEntity): void;
+
+    /**
+     * @param ReservationEntity $reservationEntity
+     *
+     * @return void
+     */
     public function removeReservation(ReservationEntity $reservationEntity): void;
 }

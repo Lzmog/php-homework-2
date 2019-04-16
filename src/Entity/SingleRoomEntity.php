@@ -30,18 +30,22 @@ class SingleRoomEntity extends RoomEntity
     /**
      * @param int $roomNumber
      * @param int $price
-     *
-     * @return void
      */
     public function setRoomInformation(int $roomNumber, int $price): void
     {
-        $room = new RoomEntity();
+        $this->setRoomNumber($roomNumber);
+        $this->setBedCount(self::BED_COUNT);
+        $this->setRoomType(self::ROOM_TYPE);
+        $this->setRestroom(self::RESTROOM);
+        $this->setExtras(self::EXTRAS);
+        $this->setPrice($price);
+    }
 
-        $room->setRoomNumber($roomNumber);
-        $room->setBedCount(self::BED_COUNT);
-        $room->setRoomType(self::ROOM_TYPE);
-        $room->setRestroom(self::RESTROOM);
-        $room->setExtras(self::EXTRAS);
-        $room->setPrice($price);
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString()
+    {
+        return parent::__toString() . $this->getRoomNumber();
     }
 }

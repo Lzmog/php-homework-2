@@ -2,6 +2,8 @@
 
 declare(strict_types=1);
 
+use Acme\Entity\ApartmentEntity;
+use Acme\Entity\BedroomEntity;
 use Acme\Entity\GuestEntity;
 use Acme\Entity\SingleRoomEntity;
 use Acme\Entity\ReservationEntity;

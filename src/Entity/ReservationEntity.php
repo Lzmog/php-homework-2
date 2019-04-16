@@ -47,4 +47,15 @@ class ReservationEntity
     {
         return $this->guest;
     }
+
+    /**
+     * {@inheritDoc}
+     */
+    public function __toString()
+    {
+        $startDate = date('Y-m-d', $this->getStartDate()->getTimestamp());
+        $endDate = date('Y-m-d', $this->getEndDate()->getTimestamp());
+
+        return $this->getGuest() . '</strong> from <time>' . $startDate . '</time> to <time>' . $endDate .'</time>!';
+    }
 }

@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace Acme\Entity;
 
+use Acme\Exception\ReservationException;
 use Acme\Model\ReservableInterface;
+use DateTime;
 
 class RoomEntity implements ReservableInterface
 {
@@ -30,7 +32,7 @@ class RoomEntity implements ReservableInterface
     private $price;
 
     /** @var array */
-    private $reservations;
+    private $reservations = [];
 
     /**
      * @return int
@@ -153,18 +155,61 @@ class RoomEntity implements ReservableInterface
     }
 
     /**
-     * @param ReservationEntity $reservationEntity
+     * @return string
      */
-    public function addReservation(ReservationEntity $reservationEntity): void
+    public function __toString()
     {
-        $this->reservations = $reservationEntity;
+        return substr(strrchr(__CLASS__, "\\"), 1) . ' <strong>';
     }
 
     /**
      * @param ReservationEntity $reservationEntity
+     * @return void
+     * @throws ReservationException
+     *
+     */
+    public function addReservation(ReservationEntity $reservationEntity): void
+    {
+        /** @var ReservationEntity $reservation */
+        foreach ($this->reservations as $reservation) {
+            if (null === $reservation->getEndDate() || null === $reservation->getStartDate()) {
+                break;
+            }
+
+            if ($this->checkIfDateValid($reservation->getStartDate(), $reservation->getEndDate(), $reservationEntity->getStartDate())) {
+                throw new ReservationException('Šiuo laikotarpiu esamas kambarys jau užimtas');
+            }
+        }
+
+        $this->reservations[] = $reservationEntity;
+    }
+
+    /**
+     * @param ReservationEntity $reservationEntity
+     * @return void
+     * @throws ReservationException
+     *
      */
     public function removeReservation(ReservationEntity $reservationEntity): void
     {
-        var_dump($reservationEntity);die;
+        $data[$reservationEntity->getGuest()] = $reservationEntity;
+        if (isset($data[$reservationEntity->getGuest()])) {
+            unset($data[$reservationEntity->getGuest()]);
+        } else {
+            throw new ReservationException('Nėra jokių rezervacijų šiam naudotojui');
+        }
+    }
+
+    /**
+     * @param DateTime $startDate
+     * @param DateTime $endDate
+     * @param DateTime $bookDate
+     *
+     * @return bool
+     */
+    private function checkIfDateValid(DateTime $startDate, DateTime $endDate, DateTime $bookDate): bool
+    {
+        // Check that user date is between start & end
+        return (($bookDate->getTimestamp() >= $startDate->getTimestamp()) && ($bookDate->getTimestamp() <= $endDate->getTimestamp()));
     }
 }

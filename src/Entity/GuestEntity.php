@@ -49,4 +49,12 @@ class GuestEntity
     {
         $this->lastName = $lastName;
     }
+
+    /**
+     * @return string
+     */
+    public function __toString()
+    {
+        return $this->name . ' ' . $this->lastName;
+    }
 }
