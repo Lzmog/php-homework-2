@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Acme\Entity;
 
-class GuestEntity
+class Guest
 {
     /** @var string */
     private $name;

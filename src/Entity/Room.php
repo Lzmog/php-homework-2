@@ -8,7 +8,7 @@ use Acme\Exception\ReservationException;
 use Acme\Model\ReservableInterface;
 use DateTime;
 
-class RoomEntity implements ReservableInterface
+class Room implements ReservableInterface
 {
     /** @var int */
     private $roomNumber;
@@ -163,14 +163,14 @@ class RoomEntity implements ReservableInterface
     }
 
     /**
-     * @param ReservationEntity $reservationEntity
+     * @param Reservation $reservationEntity
      * @return void
      * @throws ReservationException
      *
      */
-    public function addReservation(ReservationEntity $reservationEntity): void
+    public function addReservation(Reservation $reservationEntity): void
     {
-        /** @var ReservationEntity $reservation */
+        /** @var Reservation $reservation */
         foreach ($this->reservations as $reservation) {
             if (null === $reservation->getEndDate() || null === $reservation->getStartDate()) {
                 break;
@@ -185,12 +185,12 @@ class RoomEntity implements ReservableInterface
     }
 
     /**
-     * @param ReservationEntity $reservationEntity
+     * @param Reservation $reservationEntity
      * @return void
      * @throws ReservationException
      *
      */
-    public function removeReservation(ReservationEntity $reservationEntity): void
+    public function removeReservation(Reservation $reservationEntity): void
     {
         $data[$reservationEntity->getGuest()] = $reservationEntity;
         if (isset($data[$reservationEntity->getGuest()])) {

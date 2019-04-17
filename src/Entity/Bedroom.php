@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace Acme\Entity;
 
-class ApartmentEntity extends RoomEntity
+class Bedroom extends Room
 {
-    private const BED_COUNT = 4;
-    private const ROOM_TYPE = 'Standart';
+    private const BED_COUNT = 2;
+    private const ROOM_TYPE = 'Gold';
     private const RESTROOM = true;
     private const BALCONY = true;
-    private const EXTRAS = 'TV, air-conditioner, refrigerator, kitchen box, mini-bar, bathtub, free Wi-fi';
+    private const EXTRAS = 'TV, air-conditioner, refrigerator, mini-bar, bathtub';
 
-    /** @var RoomEntity */
+    /** @var Room */
     private $roomInformation;
 
     public function __construct(int $roomNumber, int $price)
@@ -21,9 +21,9 @@ class ApartmentEntity extends RoomEntity
     }
 
     /**
-     * @return RoomEntity
+     * @return Room
      */
-    public function getRoomInformation(): RoomEntity
+    public function getRoomInformation(): Room
     {
         return $this->roomInformation;
     }

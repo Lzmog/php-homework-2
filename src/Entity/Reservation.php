@@ -6,7 +6,7 @@ namespace Acme\Entity;
 
 use DateTime;
 
-class ReservationEntity
+class Reservation
 {
     /** @var DateTime */
     private $startDate;
@@ -14,10 +14,10 @@ class ReservationEntity
     /** @var DateTime */
     private $endDate;
 
-    /** @var GuestEntity */
+    /** @var Guest */
     private $guest;
 
-    public function __construct(DateTime $startDate, DateTime $endDate, GuestEntity $guest)
+    public function __construct(DateTime $startDate, DateTime $endDate, Guest $guest)
     {
         $this->startDate = $startDate;
         $this->endDate = $endDate;
@@ -41,9 +41,9 @@ class ReservationEntity
     }
 
     /**
-     * @return GuestEntity
+     * @return Guest
      */
-    public function getGuest(): GuestEntity
+    public function getGuest(): Guest
     {
         return $this->guest;
     }

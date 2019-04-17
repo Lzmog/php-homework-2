@@ -4,21 +4,21 @@ declare(strict_types=1);
 
 namespace Acme\Model;
 
-use Acme\Entity\ReservationEntity;
+use Acme\Entity\Reservation;
 
 interface ReservableInterface
 {
     /**
-     * @param ReservationEntity $reservationEntity
+     * @param Reservation $reservationEntity
      *
      * @return void
      */
-    public function addReservation(ReservationEntity $reservationEntity): void;
+    public function addReservation(Reservation $reservationEntity): void;
 
     /**
-     * @param ReservationEntity $reservationEntity
+     * @param Reservation $reservationEntity
      *
      * @return void
      */
-    public function removeReservation(ReservationEntity $reservationEntity): void;
+    public function removeReservation(Reservation $reservationEntity): void;
 }
